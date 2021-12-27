@@ -72,6 +72,7 @@ import com.android.systemui.statusbar.notification.row.ExpandableNotificationRow
 import com.android.systemui.statusbar.notification.row.ExpandableNotificationRowDragController;
 import com.android.systemui.statusbar.notification.row.OnUserInteractionCallback;
 import com.android.systemui.statusbar.phone.dagger.CentralSurfacesComponent;
+import com.android.systemui.statusbar.policy.GameSpaceManager;
 import com.android.systemui.statusbar.policy.HeadsUpUtil;
 import com.android.systemui.statusbar.policy.KeyguardStateController;
 import com.android.systemui.wmshell.BubblesManager;
@@ -555,6 +556,7 @@ class StatusBarNotificationActivityStarter implements NotificationActivityStarte
     }
 
     @VisibleForTesting
+<<<<<<< HEAD
     void launchFullScreenIntent(NotificationEntry entry) {
         // Skip if device is in VR mode.
         if (mPresenter.isDeviceInVrMode()) {
@@ -572,6 +574,44 @@ class StatusBarNotificationActivityStarter implements NotificationActivityStarte
                 mDreamManager.awaken();
             } catch (RemoteException e) {
                 e.printStackTrace();
+=======
+    void handleFullScreenIntent(NotificationEntry entry) {
+        GameSpaceManager gameSpace = mStatusBar.getGameSpaceManager();
+        if (gameSpace != null && gameSpace.shouldSuppressFullScreenIntent()) {
+            return;
+        }
+
+        if (mNotificationInterruptStateProvider.shouldLaunchFullScreenIntentWhenAdded(entry)) {
+            if (shouldSuppressFullScreenIntent(entry)) {
+                mLogger.logFullScreenIntentSuppressedByDnD(entry);
+            } else if (entry.getImportance() < NotificationManager.IMPORTANCE_HIGH) {
+                mLogger.logFullScreenIntentNotImportantEnough(entry);
+            } else {
+                // Stop screensaver if the notification has a fullscreen intent.
+                // (like an incoming phone call)
+                mUiBgExecutor.execute(() -> {
+                    try {
+                        mDreamManager.awaken();
+                    } catch (RemoteException e) {
+                        e.printStackTrace();
+                    }
+                });
+
+                // not immersive & a fullscreen alert should be shown
+                final PendingIntent fullscreenIntent =
+                        entry.getSbn().getNotification().fullScreenIntent;
+                mLogger.logSendingFullScreenIntent(entry, fullscreenIntent);
+                try {
+                    EventLog.writeEvent(EventLogTags.SYSUI_FULLSCREEN_NOTIFICATION,
+                            entry.getKey());
+                    mCentralSurfaces.wakeUpForFullScreenIntent();
+                    fullscreenIntent.send();
+                    entry.notifyFullScreenIntentLaunched();
+                    mMetricsLogger.count("note_fullscreen", 1);
+                } catch (PendingIntent.CanceledException e) {
+                    // ignore
+                }
+>>>>>>> e51a43847c8f (SystemUI: Add support for GameSpace)
             }
         });
 

@@ -503,17 +503,12 @@ public class CentralSurfacesImpl implements CoreStartable, CentralSurfaces, Tune
     private final Lazy<LightRevealScrimViewModel> mLightRevealScrimViewModelLazy;
     private final TunerService mTunerService;
 
-<<<<<<< HEAD
+
     /** Controller for the Shade. */
     @VisibleForTesting
     NotificationPanelViewController mNotificationPanelViewController;
-=======
-    protected GameSpaceManager mGameSpaceManager;
 
-    // expanded notifications
-    // the sliding/resizing panel within the notification window
-    protected NotificationPanelViewController mNotificationPanelViewController;
->>>>>>> e51a43847c8f (SystemUI: Add support for GameSpace)
+    protected GameSpaceManager mGameSpaceManager;
 
     // settings
     private QSPanelController mQSPanelController;
@@ -4203,23 +4198,21 @@ public class CentralSurfacesImpl implements CoreStartable, CentralSurfaces, Tune
         }
     }
 
-<<<<<<< HEAD
-    // End Extra BaseStatusBarMethods.
-<<<<<<< HEAD
-=======
-=======
 
-    @Override
+    // End Extra BaseStatusBarMethods.
+
+
+    
     public NotificationGutsManager getGutsManager() {
         return mGutsManager;
     }
 
     @Override
->>>>>>> 5a6aae2297e2 (SystemUI: Update gamespace for A13)
+
     public GameSpaceManager getGameSpaceManager() {
         return mGameSpaceManager;
     }
->>>>>>> e51a43847c8f (SystemUI: Add support for GameSpace)
+
 
     boolean isTransientShown() {
         return mTransientShown;

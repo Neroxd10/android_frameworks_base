@@ -53,12 +53,11 @@ import com.android.systemui.shade.NotificationShadeWindowView;
 import com.android.systemui.shade.NotificationShadeWindowViewController;
 import com.android.systemui.statusbar.LightRevealScrim;
 import com.android.systemui.statusbar.NotificationPresenter;
-<<<<<<< HEAD
+
 import com.android.systemui.util.Compile;
-=======
 import com.android.systemui.statusbar.notification.row.NotificationGutsManager;
 import com.android.systemui.statusbar.policy.GameSpaceManager;
->>>>>>> 5a6aae2297e2 (SystemUI: Update gamespace for A13)
+
 
 import java.io.PrintWriter;
 
@@ -543,11 +542,10 @@ public interface CentralSurfaces extends Dumpable, ActivityStarter, LifecycleOwn
 
     void extendDozePulse();
 
-<<<<<<< HEAD
+
     boolean shouldDelayWakeUpAnimation();
-=======
     GameSpaceManager getGameSpaceManager();
->>>>>>> 5a6aae2297e2 (SystemUI: Update gamespace for A13)
+
 
     public static class KeyboardShortcutsMessage {
         final int mDeviceId;

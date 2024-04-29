@@ -206,9 +206,9 @@ public class GamesPropsUtils {
 
     private static Map<String, Object> createXP5Props() {
         Map<String, Object> props = new HashMap<>();
-        props.put("BRAND", "Sony");
-        props.put("MANUFACTURER", "Sony");
-        props.put("MODEL", "SO-52A");
+        props.put("BRAND", "Lenovo");
+        props.put("MANUFACTURER", "Lenovo");
+        props.put("MODEL", "Lenovo TB-9707F");
         return props;
     }
 

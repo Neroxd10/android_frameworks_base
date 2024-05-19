@@ -14,12 +14,13 @@
  * limitations under the License.
  */
 
-package com.android.internal.util.pixelstar;
+package com.android.internal.util.custom;
 
+import android.content.Context;
 import android.os.Build;
 import android.os.SystemProperties;
 import android.util.Log;
-import android.app.Application;
+
 import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -70,7 +71,8 @@ public class GamesPropsUtils {
 
         propsToChange.put("NX729J", createNX729JProps());
         packagesToChange.put("NX729J", new String[]{
-                "com.YoStar.AetherGazer"
+                "com.YoStar.AetherGazer",
+                "com.tencent.ig"
         });
 
         propsToChange.put("OP8P", createOP8PProps());
@@ -82,7 +84,6 @@ public class GamesPropsUtils {
                 "com.riotgames.league.wildrift",
                 "com.riotgames.league.wildrifttw",
                 "com.riotgames.league.wildriftvn",
-                "com.tencent.ig",
                 "com.tencent.tmgp.pubgmhd",
                 "com.vng.pubgmobile"
         });
@@ -163,9 +164,9 @@ public class GamesPropsUtils {
     private static Map<String, Object> createNX729JProps() {
         Map<String, Object> props = new HashMap<>();
         props.put("BRAND", "nubia");
-        props.put("DEVICE", "NX729J");
+        props.put("DEVICE", "NX769J");
         props.put("MANUFACTURER", "nubia");
-        props.put("MODEL", "NX729J");
+        props.put("MODEL", "NX769J");
         return props;
     }
 
@@ -205,14 +206,15 @@ public class GamesPropsUtils {
 
     private static Map<String, Object> createXP5Props() {
         Map<String, Object> props = new HashMap<>();
-        props.put("BRAND", "Sony");
-        props.put("MANUFACTURER", "Sony");
-        props.put("MODEL", "SO-52A");
+        props.put("BRAND", "Lenovo");
+        props.put("MANUFACTURER", "Lenovo");
+        props.put("MODEL", "Lenovo TB-9707F");
         return props;
     }
 
-    public static void setProps(Application app) {
-        final String packageName = app.getPackageName();
+    public static void setProps(Context context) {
+        final String packageName = context.getPackageName();
+
         if (packageName == null || packageName.isEmpty()) {
             return;
         }

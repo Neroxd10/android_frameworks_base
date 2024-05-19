@@ -288,7 +288,7 @@ import com.android.server.uri.NeededUriGrants;
 import com.android.server.uri.UriGrantsManagerInternal;
 import com.android.server.wallpaper.WallpaperManagerInternal;
 import com.android.wm.shell.Flags;
-import com.android.internal.util.pixelstar.PixelPropsUtils;
+import com.android.internal.util.custom.PixelPropsUtils;
 import com.android.server.usage.AppStandbyInternal;
 
 import com.android.internal.util.custom.cutout.CutoutFullscreenController;

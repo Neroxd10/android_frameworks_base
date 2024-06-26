@@ -172,10 +172,10 @@ public class GamesPropsUtils {
 
     private static Map<String, Object> createOP8PProps() {
         Map<String, Object> props = new HashMap<>();
-        props.put("BRAND", "OnePlus");
-        props.put("DEVICE", "OnePlus8Pro");
-        props.put("MANUFACTURER", "OnePlus");
-        props.put("MODEL", "IN2020");
+        props.put("BRAND", "nubia");
+        props.put("DEVICE", "NX769J");
+        props.put("MANUFACTURER", "nubia");
+        props.put("MODEL", "NX769J");
         return props;
     }
 
